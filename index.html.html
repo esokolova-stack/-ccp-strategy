@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCP — Ownership & Strategy 2026 · OneState</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --y: #E8C010;
+    --dk: #1A1A1A;
+    --mm: #D4580C;
+    --cm: #1B6B45;
+    --mml: rgba(212,88,12,.1);
+    --cml: rgba(27,107,69,.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #0F0F0F;
+    color: #fff;
+    padding: 32px 20px;
+    min-height: 100vh;
+  }
+  .brief {
+    background: var(--dk);
+    border-radius: 14px;
+    overflow: hidden;
+    max-width: 860px;
+    margin: 0 auto;
+    box-shadow: 0 32px 80px rgba(0,0,0,.6);
+  }
+
+  /* HEADER */
+  .hdr { background: var(--y); padding: 24px 32px 20px; }
+  .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(0,0,0,.45); text-transform: uppercase; margin-bottom: 6px; }
+  .hdr h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 38px; font-weight: 900; color: #1A1A1A; line-height: 1; text-transform: uppercase; }
+  .hdr h1 span { color: rgba(0,0,0,.3); }
+  .meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+  .mi { font-size: 12px; font-weight: 600; color: rgba(0,0,0,.5); display: flex; align-items: center; gap: 5px; }
+  .md { width: 5px; height: 5px; background: rgba(0,0,0,.3); border-radius: 50%; }
+
+  /* FLOW */
+  .flow-wrap { padding: 22px 26px 6px; background: #1A1A1A; }
+  .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,.3); text-transform: uppercase; margin-bottom: 12px; }
+
+  /* COLUMNS */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #2E2E2E; }
+  .col { background: var(--dk); padding: 22px 22px 20px; }
+  .col-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid; }
+  .col.mm .col-hdr { border-color: var(--mm); }
+  .col.cm .col-hdr { border-color: var(--cm); }
+  .badge { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 2px; padding: 3px 8px; border-radius: 3px; text-transform: uppercase; }
+  .col.mm .badge { background: var(--mm); color: #fff; }
+  .col.cm .badge { background: var(--cm); color: #fff; }
+  .col-title { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; color: #fff; text-transform: uppercase; line-height: 1; }
+  .slabel { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 14px 0 7px; }
+  .col.mm .slabel { color: #E87A4C; }
+  .col.cm .slabel { color: #4CAF82; }
+  .tl { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .tl li { font-size: 12.5px; color: rgba(255,255,255,.72); padding: 7px 10px; background: rgba(255,255,255,.04); border-radius: 5px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.45; }
+  .tl li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .col.mm .tl li::before { background: var(--mm); }
+  .col.cm .tl li::before { background: var(--cm); }
+  .tl li strong { color: rgba(255,255,255,.92); font-weight: 600; }
+  .owner-box { margin-top: 6px; padding: 13px 15px; border-radius: 7px; background: rgba(27,107,69,.12); border: 1px solid rgba(27,107,69,.25); }
+  .owner-box .ob-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #4CAF82; margin-bottom: 7px; }
+  .owner-box p { font-size: 12.5px; color: rgba(255,255,255,.65); line-height: 1.6; }
+  .owner-box p em { color: rgba(255,255,255,.88); font-style: normal; font-weight: 600; }
+
+  /* INTERFACE */
+  .iface { padding: 14px 22px; background: #161616; border-top: 1px solid #282828; display: flex; align-items: stretch; gap: 0; }
+  .ib { flex: 1; padding: 10px 13px; border-radius: 6px; }
+  .ib.ms { background: var(--mml); }
+  .ib.cs { background: var(--cml); }
+  .ib-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: .4; margin-bottom: 5px; font-family: 'Barlow Condensed', sans-serif; }
+  .ib-txt { font-size: 12px; line-height: 1.55; color: rgba(255,255,255,.78); }
+  .iarrow { width: 52px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+  .il { width: 100%; height: 1px; background: linear-gradient(90deg, rgba(212,88,12,.5), rgba(27,107,69,.5)); }
+  .ia-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.22); font-family: 'Barlow Condensed', sans-serif; }
+
+  /* OWNERSHIP MATRIX */
+  .matrix-wrap { padding: 20px 22px; background: #111; }
+  .matrix-title { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,.3); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .legend { display: flex; gap: 10px; margin-left: auto; }
+  .leg { font-size: 10px; color: rgba(255,255,255,.45); display: flex; align-items: center; gap: 5px; }
+  table.mt { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.mt th { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 12px; color: rgba(255,255,255,.4); text-align: left; border-bottom: 1px solid #2A2A2A; }
+  table.mt th.mm-h { color: #E87A4C; text-align: center; }
+  table.mt th.cm-h { color: #4CAF82; text-align: center; }
+  table.mt td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,.04); color: rgba(255,255,255,.7); vertical-align: middle; }
+  table.mt tr:last-child td { border-bottom: none; }
+  table.mt tr:hover td { background: rgba(255,255,255,.02); }
+  .rc { text-align: center; }
+  .pill { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 3px; letter-spacing: .5px; }
+  .pR { background: rgba(27,107,69,.25); color: #4CAF82; border: 1px solid rgba(27,107,69,.3); }
+  .pA { background: rgba(232,192,16,.15); color: #E8C010; border: 1px solid rgba(232,192,16,.25); }
+  .pRA { display: inline-flex; gap: 4px; justify-content: center; }
+
+  /* KPI */
+  .kpi-section { background: #0E0E0E; padding: 20px 22px; }
+  .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .kpi-card { border-radius: 8px; overflow: hidden; }
+  .kpi-card-hdr { padding: 11px 15px 9px; }
+  .kpi-card.mm-card .kpi-card-hdr { background: rgba(212,88,12,.15); border-bottom: 1px solid rgba(212,88,12,.2); }
+  .kpi-card.cm-card .kpi-card-hdr { background: rgba(27,107,69,.15); border-bottom: 1px solid rgba(27,107,69,.2); }
+  .kpi-card-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: .5; margin-bottom: 2px; }
+  .mm-card .kpi-card-lbl { color: #E87A4C; }
+  .cm-card .kpi-card-lbl { color: #4CAF82; }
+  .kpi-card-ttl { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 800; text-transform: uppercase; color: #fff; }
+  .kpi-items { padding: 11px 15px; display: flex; flex-direction: column; gap: 9px; background: rgba(255,255,255,.02); }
+  .kpi-row { display: flex; align-items: flex-start; gap: 9px; }
+  .kpi-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .mm-card .kpi-dot { background: var(--mm); }
+  .cm-card .kpi-dot { background: var(--cm); }
+  .kpi-txt { font-size: 13px; line-height: 1.45; color: rgba(255,255,255,.8); }
+  .kpi-txt strong { color: #fff; font-weight: 600; }
+  .kpi-txt span { display: block; font-size: 11.5px; color: rgba(255,255,255,.4); margin-top: 2px; }
+
+  /* QUALITY DIVIDER */
+  .divider { background: var(--y); padding: 14px 24px; display: flex; align-items: baseline; gap: 14px; }
+  .divider h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 900; text-transform: uppercase; color: #1A1A1A; line-height: 1; }
+  .divider p { font-size: 12px; color: rgba(0,0,0,.4); }
+
+  /* QUALITY */
+  .intro-bar { padding: 13px 24px; background: #161616; font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.6; border-bottom: 1px solid #222; }
+  .intro-bar strong { color: rgba(255,255,255,.8); }
+  .formula-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; background: #0E0E0E; border-bottom: 1px solid #222; }
+  .formula-block { padding: 18px 22px; position: relative; }
+  .fb-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.28); margin-bottom: 7px; }
+  .fb-ttl { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; }
+  .formula-block.metrics .fb-ttl { color: #5BA8E8; }
+  .formula-block.checklist .fb-ttl { color: #4CAF82; }
+  .fb-desc { font-size: 12px; color: rgba(255,255,255,.42); line-height: 1.45; }
+  .fw { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 3px; margin-right: 5px; }
+  .fw-m { background: rgba(91,168,232,.15); color: #5BA8E8; border: 1px solid rgba(91,168,232,.25); }
+  .fw-c { background: rgba(27,107,69,.2); color: #4CAF82; border: 1px solid rgba(27,107,69,.3); }
+  .formula-plus { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 900; color: rgba(255,255,255,.12); padding: 0 6px; flex-shrink: 0; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #2A2A2A; }
+  .panel { background: var(--dk); padding: 20px 22px; }
+  .panel-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 13px; }
+  .metrics-panel .panel-lbl { color: #5BA8E8; }
+  .check-panel .panel-lbl { color: #4CAF82; }
+  .metric-item { padding: 9px 12px; background: rgba(255,255,255,.04); border-radius: 6px; margin-bottom: 7px; }
+  .metric-item:last-child { margin-bottom: 0; }
+  .mi-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3px; }
+  .mi-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.9); }
+  .mi-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(91,168,232,.7); }
+  .mi-desc { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.45; }
+  .check-item { display: flex; align-items: flex-start; gap: 11px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+  .check-item:last-child { border-bottom: none; }
+  .check-box { width: 19px; height: 19px; border-radius: 4px; border: 1.5px solid rgba(27,107,69,.5); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; }
+  .check-txt strong { display: block; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.88); margin-bottom: 2px; }
+  .check-txt span { font-size: 12px; color: rgba(255,255,255,.38); line-height: 1.45; }
+
+  .score-row { background: #111; padding: 16px 22px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; border-top: 1px solid #222; }
+  .score-cell { padding: 11px 15px; text-align: center; }
+  .sc-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 6px; }
+  .sc-range { font-family: 'Barlow Condensed', sans-serif; font-size: 21px; font-weight: 900; }
+  .sc-red { color: #E24B4A; } .sc-amber { color: #E8C010; } .sc-green { color: #4CAF82; }
+  .sc-desc { font-size: 11.5px; color: rgba(255,255,255,.35); margin-top: 4px; line-height: 1.4; }
+
+  .schedule { background: #0D0D0D; padding: 18px 22px; border-top: 1px solid #1E1E1E; }
+  .schedule-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 12px; }
+  .schedule-steps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: #222; border-radius: 6px; overflow: hidden; }
+  .sched-step { background: #161616; padding: 12px 14px; }
+  .sched-who { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #4CAF82; margin-bottom: 5px; }
+  .sched-when { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 900; color: rgba(255,255,255,.9); text-transform: uppercase; margin-bottom: 4px; }
+  .sched-what { font-size: 12px; color: rgba(255,255,255,.42); line-height: 1.45; }
+
+  .footer { background: var(--y); padding: 11px 26px; display: flex; justify-content: space-between; align-items: center; }
+  .f-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: rgba(0,0,0,.38); text-transform: uppercase; }
+  .f-ttl { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 900; color: #1A1A1A; text-transform: uppercase; }
+
+  @media (max-width: 640px) {
+    .cols, .two-col, .kpi-grid, .score-row { grid-template-columns: 1fr; }
+    .formula-row { grid-template-columns: 1fr; }
+    .formula-plus { display: none; }
+    .hdr h1 { font-size: 26px; }
+    .meta { gap: 10px; }
+    body { padding: 16px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="brief">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="eyebrow">Kick-off · CCP Development 2026</div>
+    <h1>Media Marketing <span>&</span> Community<br>Ownership <span>&</span> Strategy</h1>
+    <div class="meta">
+      <div class="mi"><div class="md"></div>OneState CCP</div>
+      <div class="mi"><div class="md"></div>2026 · Q1–Q4</div>
+      <div class="mi"><div class="md"></div>Target: 350+ creators · 1,500+ content/mo</div>
+    </div>
+  </div>
+
+  <!-- OWNERSHIP DIAGRAM -->
+  <div class="flow-wrap">
+    <div class="section-label">Ownership model</div>
+    <svg width="100%" viewBox="0 0 680 248" style="display:block;">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <text x="155" y="22" text-anchor="middle" fill="rgba(212,88,12,0.6)" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="2">EXTERNAL</text>
+      <rect x="40" y="30" width="155" height="44" rx="6" fill="#F5EDE8" stroke="#D4580C" stroke-width="0.5"/>
+      <text x="117" y="53" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="700" fill="#7A2A08">External Creators</text>
+      <rect x="40" y="100" width="155" height="44" rx="6" fill="#F5EDE8" stroke="#D4580C" stroke-width="1.5"/>
+      <text x="117" y="122" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="700" fill="#7A2A08">Media Marketing</text>
+      <line x1="117" y1="74" x2="117" y2="98" stroke="#D4580C" stroke-width="1.5" marker-end="url(#ar)" opacity="0.7"/>
+      <text x="122" y="89" font-family="Barlow Condensed,sans-serif" font-size="9" fill="rgba(212,88,12,0.5)" letter-spacing="1">RECRUITS</text>
+      <text x="525" y="22" text-anchor="middle" fill="rgba(27,107,69,0.6)" font-family="Barlow Condensed,sans-serif" font-size="10" font-weight="700" letter-spacing="2">INTERNAL</text>
+      <rect x="485" y="30" width="155" height="44" rx="6" fill="#E6F5EE" stroke="#1B6B45" stroke-width="0.5"/>
+      <text x="562" y="53" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="700" fill="#0D4028">Player Community</text>
+      <rect x="485" y="100" width="155" height="44" rx="6" fill="#E6F5EE" stroke="#1B6B45" stroke-width="1.5"/>
+      <text x="562" y="122" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="700" fill="#0D4028">Local CMs</text>
+      <line x1="562" y1="74" x2="562" y2="98" stroke="#1B6B45" stroke-width="1.5" marker-end="url(#ar)" opacity="0.7"/>
+      <text x="567" y="89" font-family="Barlow Condensed,sans-serif" font-size="9" fill="rgba(27,107,69,0.5)" letter-spacing="1">ONBOARDS</text>
+      <path d="M195,122 L263,122 L263,155 L291,155" fill="none" stroke="#D4580C" stroke-width="1.5" marker-end="url(#ar)" opacity="0.6"/>
+      <path d="M485,122 L415,122 L415,155 L389,155" fill="none" stroke="#1B6B45" stroke-width="1.5" marker-end="url(#ar)" opacity="0.6"/>
+      <rect x="290" y="135" width="100" height="40" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+      <text x="340" y="155" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="15" font-weight="900" fill="#633806">CCP</text>
+      <path d="M562,144 L562,210 L492,210" fill="none" stroke="#1B6B45" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ar)" opacity="0.55"/>
+      <rect x="300" y="198" width="190" height="26" rx="5" fill="#E6F5EE" stroke="#1B6B45" stroke-width="0.5" opacity="0.85"/>
+      <text x="395" y="211" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="12" font-weight="600" fill="#0D4028">Local official accounts</text>
+      <text x="640" y="207" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="rgba(27,107,69,0.5)" letter-spacing="1">REPOSTS</text>
+      <text x="340" y="240" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="10" fill="rgba(186,117,23,0.6)" letter-spacing="1.5">CONTENT · REACH · REVENUE</text>
+    </svg>
+  </div>
+
+  <!-- COLUMNS -->
+  <div class="cols">
+    <div class="col mm">
+      <div class="col-hdr"><div class="badge">Media Marketing</div><div class="col-title">System &amp; Activations</div></div>
+      <div class="slabel">Platform &amp; Monetisation</div>
+      <ul class="tl">
+        <li><strong>Revenue share</strong> — webshop integration, tier structure 1–5% of Net, tracking via promo code / link</li>
+        <li><strong>Creator Guide</strong> — how-to guides, scenarios, case library for content quality</li>
+        <li><strong>Production Pack</strong> — monthly content packs, assets, templates</li>
+        <li><strong>Creator analytics system</strong> — building the infrastructure to track creator performance: views, engagement rate, content volume, rev share attribution. Single source of truth for both MM and Community</li>
+      </ul>
+      <div class="slabel">External Acquisition</div>
+      <ul class="tl">
+        <li><strong>CCP promo</strong> — CCP section on onestate.com, external recruitment campaigns</li>
+        <li><strong>Strategic SMM featuring</strong> — brand-level creator spotlights on main channels, campaign-driven highlights</li>
+      </ul>
+      <div class="slabel">Campaign Activations</div>
+      <ul class="tl">
+        <li><strong>Creator briefs</strong> — situational tasks tied to events, collabs, and game updates</li>
+        <li><strong>Situational KPIs</strong> — drive audience to specific events, channels, or mechanics on demand</li>
+      </ul>
+    </div>
+    <div class="col cm">
+      <div class="col-hdr"><div class="badge">Community</div><div class="col-title">People &amp; Regions</div></div>
+      <div class="slabel">Creator Management</div>
+      <ul class="tl">
+        <li><strong>Onboarding</strong> — first 30 days, adaptation, first touchpoint</li>
+        <li><strong>Daily management</strong> — communication, issue resolution, creator support</li>
+        <li><strong>Quality filtering</strong> — intake screening, basic quality control at entry</li>
+        <li><strong>Coaching &amp; feedback</strong> — personal development with top performers</li>
+      </ul>
+      <div class="slabel">Regional Ownership</div>
+      <div class="owner-box">
+        <div class="ob-title">Each CM owns their region — fully</div>
+        <p>Every local CM is the <em>sole decision-maker</em> for their creator pool. They recruit from within, set the bar, and choose who gets featured. They have <em>direct access to official local game accounts</em> and publish independently — no approval chain, no waiting on SMM. The featuring call is theirs. The growth numbers are theirs.</p>
+      </div>
+      <div class="slabel">Retention &amp; Internal Growth</div>
+      <ul class="tl">
+        <li><strong>Internal base activation</strong> — organic ambassadors, player-creators from within the community</li>
+        <li><strong>Reshare tier</strong> — managing the engagement programme and reshare mechanics</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- INTERFACE -->
+  <div class="iface">
+    <div class="ib ms">
+      <div class="ib-lbl">Media Marketing → Community</div>
+      <div class="ib-txt">Guides · assets · rev-share mechanics · situational briefs · local account access</div>
+    </div>
+    <div class="iarrow"><div class="il"></div><div class="ia-lbl">sync</div></div>
+    <div class="ib cs">
+      <div class="ib-lbl">Community → Media Marketing</div>
+      <div class="ib-txt">Retention data · regional insights · strategic featuring nominations · content quality signal</div>
+    </div>
+  </div>
+
+  <!-- OWNERSHIP MATRIX -->
+  <div class="matrix-wrap">
+    <div class="matrix-title">
+      Ownership Matrix
+      <div class="legend">
+        <span class="leg"><span class="pill pR">R</span> Responsible</span>
+        <span class="leg"><span class="pill pA">A</span> Accountable</span>
+      </div>
+    </div>
+    <table class="mt">
+      <thead>
+        <tr>
+          <th style="width:52%">Activity</th>
+          <th class="mm-h" style="width:24%">Media Marketing</th>
+          <th class="cm-h" style="width:24%">Community</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Rev share design &amp; webshop setup</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td><td class="rc">—</td></tr>
+        <tr><td>Creator analytics system</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td><td class="rc">—</td></tr>
+        <tr><td>Creator Guide &amp; production assets</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td><td class="rc">—</td></tr>
+        <tr><td>External creator recruitment</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td><td class="rc">—</td></tr>
+        <tr><td>Strategic SMM featuring (main channels)</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td><td class="rc"><span class="pill pR">R</span></td></tr>
+        <tr><td>Situational briefs &amp; campaign KPIs</td><td class="rc"><span class="pill pA">A</span></td><td class="rc"><span class="pill pR">R</span></td></tr>
+        <tr><td>Local account publishing (autonomous)</td><td class="rc">—</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td></tr>
+        <tr><td>Creator onboarding &amp; daily management</td><td class="rc">—</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td></tr>
+        <tr><td>Quality filtering &amp; coaching</td><td class="rc">—</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td></tr>
+        <tr><td>Regional activation &amp; creator growth</td><td class="rc">—</td><td class="rc"><span class="pRA"><span class="pill pA">A</span><span class="pill pR">R</span></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-section">
+    <div class="kpi-grid">
+      <div class="kpi-card mm-card">
+        <div class="kpi-card-hdr">
+          <div class="kpi-card-lbl">Media Marketing</div>
+          <div class="kpi-card-ttl">Infrastructure &amp; Reach</div>
+        </div>
+        <div class="kpi-items">
+          <div class="kpi-row"><div class="kpi-dot"></div><div class="kpi-txt"><strong>Blended P-ROAS 365d</strong><span>Revenue attributed to creator-driven webshop conversions over a 365-day attribution window</span></div></div>
+          <div class="kpi-row"><div class="kpi-dot"></div><div class="kpi-txt"><strong>Monthly material delivery</strong><span>On-time delivery of Creator Guide updates, production packs, and campaign briefs each month</span></div></div>
+        </div>
+      </div>
+      <div class="kpi-card cm-card">
+        <div class="kpi-card-hdr">
+          <div class="kpi-card-lbl">Community</div>
+          <div class="kpi-card-ttl">Growth &amp; Regions</div>
+        </div>
+        <div class="kpi-items">
+          <div class="kpi-row"><div class="kpi-dot"></div><div class="kpi-txt"><strong>Content quality score growth MoM</strong><span>Composite score from existing creator base — volume, engagement growth, CM checklist. Excludes new recruits.</span></div></div>
+          <div class="kpi-row"><div class="kpi-dot"></div><div class="kpi-txt"><strong>Active regions</strong><span>Number of game-presence markets with an active, producing creator base — not just Brazil</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUALITY DIVIDER -->
+  <div class="divider">
+    <h2>Content Quality Score</h2>
+    <p>Proposed methodology · to be aligned with Community team</p>
+  </div>
+
+  <div class="intro-bar">
+    Quality is measured as a <strong>composite score</strong> — 50% quantitative (platform metrics growth) + 50% qualitative (CM checklist). Both components tracked monthly per creator, then aggregated at region level. The CM owns the assessment for their region.
+  </div>
+
+  <div class="formula-row">
+    <div class="formula-block metrics">
+      <div class="fb-lbl"><span class="fw fw-m">50%</span> Quantitative</div>
+      <div class="fb-ttl">Metrics Growth</div>
+      <div class="fb-desc">Month-over-month growth of engagement rate and views across creator's content — tracked automatically where possible</div>
+    </div>
+    <div class="formula-plus">+</div>
+    <div class="formula-block checklist">
+      <div class="fb-lbl"><span class="fw fw-c">50%</span> Qualitative</div>
+      <div class="fb-ttl">CM Checklist</div>
+      <div class="fb-desc">Monthly spot-check by local CM on a sample of 5–10 pieces from their region's creator pool</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel metrics-panel">
+      <div class="panel-lbl">Metrics component</div>
+      <div class="metric-item">
+        <div class="mi-top"><span class="mi-name">Engagement rate growth</span><span class="mi-tag">Primary</span></div>
+        <div class="mi-desc">(Likes + comments + shares) / views — MoM delta per creator. Normalises for audience size differences across regions.</div>
+      </div>
+      <div class="metric-item">
+        <div class="mi-top"><span class="mi-name">View count growth</span><span class="mi-tag">Primary</span></div>
+        <div class="mi-desc">Average views per post MoM. Catches reach improvements even when engagement rate is stable.</div>
+      </div>
+      <div class="metric-item">
+        <div class="mi-top"><span class="mi-name">Posting consistency</span><span class="mi-tag">Secondary</span></div>
+        <div class="mi-desc">Number of posts per month. Minimum threshold to be set per tier.</div>
+      </div>
+    </div>
+    <div class="panel check-panel">
+      <div class="panel-lbl">CM checklist · 4 criteria · 1 point each</div>
+      <div class="check-item">
+        <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#4CAF82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-txt"><strong>Gameplay is shown</strong><span>Actual in-game footage is present — not just face-cam or commentary without context</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#4CAF82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-txt"><strong>Organic integration</strong><span>Game is woven into the narrative — not a forced mid-roll ad feel</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#4CAF82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-txt"><strong>Positive brand tone</strong><span>OneState is framed positively or neutrally — no content that damages brand perception</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#4CAF82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-txt"><strong>Follows the brief</strong><span>If a campaign brief was active — key message or mechanic is addressed</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-row">
+    <div class="score-cell">
+      <div class="sc-lbl">Score 0–4</div>
+      <div class="sc-range sc-red">Needs work</div>
+      <div class="sc-desc">CM reviews with creator, shares feedback, sets a 30-day improvement target</div>
+    </div>
+    <div class="score-cell">
+      <div class="sc-lbl">Score 5–7</div>
+      <div class="sc-range sc-amber">On track</div>
+      <div class="sc-desc">Standard tier — maintain activity, eligible for rev share</div>
+    </div>
+    <div class="score-cell">
+      <div class="sc-lbl">Score 8–10</div>
+      <div class="sc-range sc-green">Top performer</div>
+      <div class="sc-desc">Priority for featuring, coaching, and higher rev share tier</div>
+    </div>
+  </div>
+
+  <div class="schedule">
+    <div class="schedule-lbl">Measurement schedule</div>
+    <div class="schedule-steps">
+      <div class="sched-step">
+        <div class="sched-who">CM</div>
+        <div class="sched-when">Monthly</div>
+        <div class="sched-what">Spot-check 5–10 content pieces per region, fill in checklist, log score in CCP tracker</div>
+      </div>
+      <div class="sched-step">
+        <div class="sched-who">Auto / CM</div>
+        <div class="sched-when">Monthly</div>
+        <div class="sched-what">Platform metrics pulled automatically or manually logged — engagement rate, views, posting frequency</div>
+      </div>
+      <div class="sched-step">
+        <div class="sched-who">Community → MM</div>
+        <div class="sched-when">Quarterly</div>
+        <div class="sched-what">Regional quality score reported to Media Marketing for cross-region review and KPI tracking</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="f-lbl">OneState · CCP</span>
+    <span class="f-ttl">Creator Content Program 2026</span>
+    <span class="f-lbl">Q1 — Q4</span>
+  </div>
+
+</div>
+</body>
+</html>
